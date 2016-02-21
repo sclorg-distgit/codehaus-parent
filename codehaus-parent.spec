@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        4
-Release:        5.9%{?dist}
+Release:        5.10%{?dist}
 Summary:        Parent pom file for codehaus projects
 
 License:        ASL 2.0
@@ -24,7 +24,7 @@ This package contains the parent pom file for codehaus projects.
 
 %prep
 %setup -q -c -T -n %{pkg_name}-%{version}
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 cp -p %{SOURCE0} .
 cp -p %{SOURCE1} LICENSE
@@ -35,7 +35,7 @@ cp -p %{SOURCE1} LICENSE
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 install -d -m 755 $RPM_BUILD_ROOT%{_mavenpomdir}
 install -pm 644 codehaus-parent-%{version}.pom \
@@ -49,6 +49,9 @@ install -pm 644 codehaus-parent-%{version}.pom \
 %doc LICENSE
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 4-5.10
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 4-5.9
 - maven33 rebuild
 
